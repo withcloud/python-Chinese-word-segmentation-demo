@@ -4,7 +4,6 @@ import jieba
 import argparse
 import json
 
-
 def main(args):
     if args.text:
         # 1. jieba
@@ -32,8 +31,6 @@ def main(args):
 
     else:
         print('請輸入文字！')
-
-
 
 if __name__ == '__main__':
 
