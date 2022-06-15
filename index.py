@@ -1,4 +1,3 @@
-from unittest import result
 from snownlp import SnowNLP
 import jieba
 
