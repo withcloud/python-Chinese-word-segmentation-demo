@@ -29,11 +29,16 @@ def textArr_merge(text_arr):
     return ' '.join(text_arr)
 
 def snownlp_output(text):
-    item = SnowNLP(text)
-    return {
-        "sentiments": item.sentiments,
-        "words": item.words
-    }
+    if text:
+        item = SnowNLP(text)
+        return {
+            "sentiments": item.sentiments,
+            "words": item.words
+        }
+    else:
+        return {
+            "sentiments": 0,
+        }
 
 def opencc_output(text):
     # s2t.json Simplified Chinese to Traditional Chinese 簡體到繁體
