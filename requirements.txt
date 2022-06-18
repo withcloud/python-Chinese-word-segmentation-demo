@@ -1,0 +1,4 @@
+OpenCC
+snownlp
+jieba
+stopwordsiso
