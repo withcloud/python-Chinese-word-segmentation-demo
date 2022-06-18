@@ -2,7 +2,7 @@
 
 ## python
 
-1. 執行 `pip3 -r requirements.txt` or `pip -r requirements.txt`
+1. 執行 `pip3 install -r requirements.txt` or `pip install -r requirements.txt`
 
 ## nodejs
 
