@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const { io } = require("socket.io-client");
 
-const socket = io("ws://localhost:3000");
+const socket = io("http://0.0.0.0:4000");
 
 socket.on("connect_error", (err) => {
   console.log(`connect_error due to ${err.message}`);
