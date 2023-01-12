@@ -2,3 +2,6 @@ OpenCC
 snownlp
 jieba
 stopwordsiso
+socketIO-client
+python-socketio
+eventlet

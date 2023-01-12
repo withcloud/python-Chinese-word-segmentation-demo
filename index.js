@@ -1,20 +1,49 @@
 const execSync = require("child_process").execSync;
 const express = require("express");
 const cors = require("cors");
+const { io } = require("socket.io-client");
+
+const socket = io("http://localhost:4000");
+
+socket.on('connect', function (socket) {
+  console.log('Connected!');
+});
+
+let receivedMsg = null
+
+socket.on('my response', function(msg) {
+  console.log("my response", msg)
+  receivedMsg = msg
+});
+
+// setTimeout(() => {
+//   socket.emit("my_message", "我們好好丫")
+// }, 2000)
+
 const app = express();
 const port = 4320;
 
 app.use(cors());
 
-const getPy = async (text = "") => {
-  const result = execSync(`python3 zh_change.py ${text}`);
-  return result.toString("utf8");
-};
-
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
   const { str } = req.query;
-  const result = getPy(str);
-  result.then((result) => res.json(JSON.parse(result.replace(/'/g, '"'))));
+
+  // 清空
+  receivedMsg = null
+
+  // 發送到 python
+  socket.emit("my_message", str)
+
+  // 等待 python 處理完返回
+  while(receivedMsg === null) {
+    await new Promise(resolve => {
+      setTimeout(() => {
+        resolve()
+      }, 100)
+    })
+  }
+
+  res.json(receivedMsg)
 });
 
 app.listen(port, () => {
