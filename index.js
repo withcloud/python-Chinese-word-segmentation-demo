@@ -5,6 +5,10 @@ const { io } = require("socket.io-client");
 
 const socket = io("http://localhost:3000");
 
+socket.on("connect_error", (err) => {
+  console.log(`connect_error due to ${err.message}`);
+});
+
 socket.on('connect', function (socket) {
   console.log('Connected!');
 });
